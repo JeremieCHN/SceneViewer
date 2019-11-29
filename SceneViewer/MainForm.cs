@@ -49,7 +49,8 @@ namespace SceneViewer {
             openFileDialog.Title = "打开文件";
             openFileDialog.DefaultExt = "*.*|所有文件";
             if (openFileDialog.ShowDialog(this) == DialogResult.OK) {
-                Enabled = false;
+                menuStrip1.Enabled = false;
+                tabControl1.Enabled = false;
                 ClearForm();
                 ThreadPool.QueueUserWorkItem(delegate {
                     manager.LoadFiles(openFileDialog.FileName);
@@ -59,8 +60,10 @@ namespace SceneViewer {
         }
 
         private void 加载文件夹ToolStripMenuItem_Click(object sender, EventArgs e) {
+            openFolderDialog.Title = "打开Data文件夹";
             if (openFolderDialog.ShowDialog(this) == DialogResult.OK) {
-                Enabled = false;
+                menuStrip1.Enabled = false;
+                tabControl1.Enabled = false;
                 ClearForm();
                 ThreadPool.QueueUserWorkItem(delegate {
                     manager.LoadFolder(openFolderDialog.Folder);
@@ -83,7 +86,18 @@ namespace SceneViewer {
                 }
                 Logger.Info("加载文件视图完成");
 
-                // TODO 加载场景视图
+                // 加载场景视图
+                Logger.Info("加载场景视图");
+                Progress.Reset();
+                proRate = 0;
+                foreach (var file in manager.assetsFileList) {
+                    var node = file.BuildHierarchiesTree();
+                    if (node.Nodes.Count > 0)
+                        HierarchiesTree.Nodes.Add(node);
+                    Progress.Report(++proRate, manager.assetsFileList.Count);
+                }
+                Logger.Info("加载场景视图完成");
+
 
                 // TODO 加载脚本视图
                 Logger.Info("加载脚本视图");
@@ -92,20 +106,47 @@ namespace SceneViewer {
             } else {
                 Logger.Info("未找到Unity资源文件");
             }
-            Enabled = true;
+            menuStrip1.Enabled = true;
+            tabControl1.Enabled = true;
         }
 
         private void ClearForm() {
+            // 场景视图
+            HierarchiesTree.Nodes.Clear();
+            ComponentTree.Nodes.Clear();
+
+            // 文件视图
             FileView_Selector.Items.Clear();
             ExternalList.Items.Clear();
             AssetObjList.Items.Clear();
+
+            // 右侧视图
             DumpText.Text = "";
             FileInfoText.Text = "";
+
             Text = "MainForm";
+
+            manager.Clear();
             scriptDumper.Dispose();
             scriptDumper = new ScriptDumper();
         }
 
+        // 场景视图部分
+        private void HierarchiesTree_AfterSelect(object sender, TreeViewEventArgs e) {
+            if (HierarchiesTree.SelectedNode.Tag is GameObject gameObject) {
+                ShowInfoForObj(gameObject);
+                Logger.Info("获取组件");
+                ComponentTree.Nodes.Clear();
+                ComponentTree.Nodes.AddRange(gameObject.BuildComponentsList());
+                Logger.Info("获取组件完成");
+            }
+        }
+
+        private void ComponentTree_AfterSelect(object sender, TreeViewEventArgs e) {
+            var obj = ComponentTree.SelectedNode.Tag as AssetObject;
+            ShowInfoForObj(obj);
+        }
+        
         // 文件视图部分
         private void FileView_Selector_SelectedIndexChanged(object sender, EventArgs e) {
             ExternalList.Items.Clear();
@@ -145,10 +186,22 @@ namespace SceneViewer {
 
         // 加载DLL
         private void 加载DLLToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (openFolderDialog.ShowDialog(this) == DialogResult.OK) {
-                scriptDumper.Dispose();
-                scriptDumper = new ScriptDumper(openFolderDialog.Folder);
+            if (manager.assetsFileList.Count > 0) {
+                openFolderDialog.Title = "打开DLL所在文件夹";
+                if (openFolderDialog.ShowDialog(this) == DialogResult.OK) {
+                    Logger.Info("载入DLL");
+                    scriptDumper.Dispose();
+                    scriptDumper = new ScriptDumper(openFolderDialog.Folder);
+                    Logger.Info("载入DLL完成");
+                }
+            } else {
+                MessageBox.Show(this, "未加载Data文件");
             }
+        }
+
+        private void 关闭文件ToolStripMenuItem_Click(object sender, EventArgs e) {
+            ClearForm();
+            Logger.Info("文件已关闭");
         }
     }
 
