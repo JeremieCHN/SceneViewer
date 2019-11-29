@@ -34,10 +34,12 @@ namespace SceneViewer {
             };
 
             manager = new AssetsManager();
+            scriptDumper = new ScriptDumper();
             openFileDialog.Multiselect = false;
         }
 
-        public AssetsManager manager;
+        private AssetsManager manager;
+        private ScriptDumper scriptDumper;
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         private OpenFolderDialog openFolderDialog = new OpenFolderDialog();
 
@@ -69,12 +71,26 @@ namespace SceneViewer {
 
         private void AfterLoad() {
             if (manager.assetsFileList.Count > 0) {
+                Text = "Version: " + manager.assetsFileList[0].unityVersion;
+
+                // 加载文件视图
+                Logger.Info("加载文件视图");
+                Progress.Reset();
+                int proRate = 0;
                 foreach (var assetFile in manager.assetsFileList) {
                     FileView_Selector.Items.Add(assetFile.fileName);
+                    Progress.Report(++proRate, manager.assetsFileList.Count);
                 }
-                Text = "Version: " + manager.assetsFileList[0].unityVersion;
+                Logger.Info("加载文件视图完成");
+
+                // TODO 加载场景视图
+
+                // TODO 加载脚本视图
+                Logger.Info("加载脚本视图");
+
+                Logger.Info("视图更新完成");
             } else {
-                Logger.Info("No File Load");
+                Logger.Info("未找到Unity资源文件");
             }
             Enabled = true;
         }
@@ -86,9 +102,11 @@ namespace SceneViewer {
             DumpText.Text = "";
             FileInfoText.Text = "";
             Text = "MainForm";
+            scriptDumper.Dispose();
+            scriptDumper = new ScriptDumper();
         }
 
-        // 列表选中具体某一项
+        // 文件视图部分
         private void FileView_Selector_SelectedIndexChanged(object sender, EventArgs e) {
             ExternalList.Items.Clear();
             AssetObjList.Items.Clear();
@@ -116,18 +134,22 @@ namespace SceneViewer {
                 ShowInfoForObj(AssetObjList.SelectedItems[0].Tag as AssetObject);
         }
 
+        // 右侧信息展示
         private void ShowInfoForObj(AssetObject assetObject) {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("FileName: ").Append(assetObject.assetsFile.fileName).AppendLine();
-            builder.Append("PathID: ").Append(assetObject.m_PathID).AppendLine();
-            builder.Append("Type: ").Append(assetObject.type).AppendLine();
-            builder.Append("ByteStart: ").AppendFormat("0x{0:X}", assetObject.reader.byteStart).AppendLine();
-            builder.Append("ByteSize: ").AppendFormat("0x{0:X}", assetObject.reader.byteSize).AppendLine();
-            builder.Append("ByteSize: ").AppendFormat("0x{0:X}",
-                assetObject.reader.byteStart + assetObject.reader.byteSize - 1).AppendLine();
-            FileInfoText.Text = builder.ToString();
+            if (assetObject is MonoBehaviour)
+                DumpText.Text = scriptDumper.DumpScript(assetObject.reader);
+            else
+                DumpText.Text = assetObject.DumpObjInfo();
+            FileInfoText.Text = assetObject.DumpFileInfo();
         }
 
+        // 加载DLL
+        private void 加载DLLToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (openFolderDialog.ShowDialog(this) == DialogResult.OK) {
+                scriptDumper.Dispose();
+                scriptDumper = new ScriptDumper(openFolderDialog.Folder);
+            }
+        }
     }
 
     public class GUILogger : ILogger {

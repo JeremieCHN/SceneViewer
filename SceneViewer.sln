@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceneViewer", "SceneViewer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetStudio", "AssetStudio\AssetStudio.csproj", "{AF56B63C-1764-41B7-9E60-8D485422AC3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetStudioUtility", "AssetStudioUtility\AssetStudioUtility.csproj", "{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,16 @@ Global
 		{AF56B63C-1764-41B7-9E60-8D485422AC3B}.Release|x64.Build.0 = Release|Any CPU
 		{AF56B63C-1764-41B7-9E60-8D485422AC3B}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF56B63C-1764-41B7-9E60-8D485422AC3B}.Release|x86.Build.0 = Release|Any CPU
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Debug|x64.ActiveCfg = Debug|x64
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Debug|x64.Build.0 = Debug|x64
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Debug|x86.ActiveCfg = Debug|x86
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Debug|x86.Build.0 = Debug|x86
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Release|Any CPU.ActiveCfg = Release|x86
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Release|x64.ActiveCfg = Release|x64
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Release|x64.Build.0 = Release|x64
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Release|x86.ActiveCfg = Release|x86
+		{9131C403-7FE8-444D-9AF5-5FE5DF76FF24}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
