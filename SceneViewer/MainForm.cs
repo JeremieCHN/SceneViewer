@@ -98,7 +98,6 @@ namespace SceneViewer {
                 }
                 Logger.Info("加载场景视图完成");
 
-
                 // TODO 加载脚本视图
                 Logger.Info("加载脚本视图");
 
