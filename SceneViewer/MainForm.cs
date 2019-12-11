@@ -153,8 +153,8 @@ namespace SceneViewer {
             var file = manager.assetsFileList[FileView_Selector.SelectedIndex];
             for (int i = 0; i < file.m_Externals.Count; i++) {
                 ListViewItem item = new ListViewItem() {
-                    Tag = i,
-                    Text = string.Format("{0} (0x{0:X})", i, i)
+                    Tag = i + 1,
+                    Text = string.Format("{0} (0x{0:X})", i + 1)
                 };
                 item.SubItems.Add(file.m_Externals[i].fileName);
                 ExternalList.Items.Add(item);

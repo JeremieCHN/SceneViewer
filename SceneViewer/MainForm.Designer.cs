@@ -27,6 +27,8 @@
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.加载文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.加载文件夹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.关闭文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.加载DLLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -57,8 +59,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.关闭文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -110,16 +110,28 @@
             // 加载文件ToolStripMenuItem
             // 
             this.加载文件ToolStripMenuItem.Name = "加载文件ToolStripMenuItem";
-            this.加载文件ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.加载文件ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.加载文件ToolStripMenuItem.Text = "加载文件";
             this.加载文件ToolStripMenuItem.Click += new System.EventHandler(this.加载文件ToolStripMenuItem_Click);
             // 
             // 加载文件夹ToolStripMenuItem
             // 
             this.加载文件夹ToolStripMenuItem.Name = "加载文件夹ToolStripMenuItem";
-            this.加载文件夹ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.加载文件夹ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.加载文件夹ToolStripMenuItem.Text = "加载文件夹";
             this.加载文件夹ToolStripMenuItem.Click += new System.EventHandler(this.加载文件夹ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
+            // 
+            // 关闭文件ToolStripMenuItem
+            // 
+            this.关闭文件ToolStripMenuItem.Name = "关闭文件ToolStripMenuItem";
+            this.关闭文件ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.关闭文件ToolStripMenuItem.Text = "关闭文件";
+            this.关闭文件ToolStripMenuItem.Click += new System.EventHandler(this.关闭文件ToolStripMenuItem_Click);
             // 
             // 加载DLLToolStripMenuItem
             // 
@@ -393,6 +405,7 @@
             this.DumpText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DumpText.Size = new System.Drawing.Size(225, 236);
             this.DumpText.TabIndex = 1;
+            this.DumpText.WordWrap = false;
             // 
             // label1
             // 
@@ -448,18 +461,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(66, 17);
             this.toolStripStatusLabel1.Text = "Log  Here";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 关闭文件ToolStripMenuItem
-            // 
-            this.关闭文件ToolStripMenuItem.Name = "关闭文件ToolStripMenuItem";
-            this.关闭文件ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.关闭文件ToolStripMenuItem.Text = "关闭文件";
-            this.关闭文件ToolStripMenuItem.Click += new System.EventHandler(this.关闭文件ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
