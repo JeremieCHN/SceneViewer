@@ -40,6 +40,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.ScriptTree = new System.Windows.Forms.TreeView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.ExternalList = new System.Windows.Forms.ListView();
@@ -72,6 +73,7 @@
             this.splitContainer5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -92,7 +94,7 @@
             this.加载DLLToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -104,46 +106,46 @@
             this.toolStripSeparator1,
             this.关闭文件ToolStripMenuItem});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
-            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.文件ToolStripMenuItem.Text = "文件";
             // 
             // 加载文件ToolStripMenuItem
             // 
             this.加载文件ToolStripMenuItem.Name = "加载文件ToolStripMenuItem";
-            this.加载文件ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.加载文件ToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.加载文件ToolStripMenuItem.Text = "加载文件";
             this.加载文件ToolStripMenuItem.Click += new System.EventHandler(this.加载文件ToolStripMenuItem_Click);
             // 
             // 加载文件夹ToolStripMenuItem
             // 
             this.加载文件夹ToolStripMenuItem.Name = "加载文件夹ToolStripMenuItem";
-            this.加载文件夹ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.加载文件夹ToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.加载文件夹ToolStripMenuItem.Text = "加载文件夹";
             this.加载文件夹ToolStripMenuItem.Click += new System.EventHandler(this.加载文件夹ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
             // 
             // 关闭文件ToolStripMenuItem
             // 
             this.关闭文件ToolStripMenuItem.Name = "关闭文件ToolStripMenuItem";
-            this.关闭文件ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.关闭文件ToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.关闭文件ToolStripMenuItem.Text = "关闭文件";
             this.关闭文件ToolStripMenuItem.Click += new System.EventHandler(this.关闭文件ToolStripMenuItem_Click);
             // 
             // 加载DLLToolStripMenuItem
             // 
             this.加载DLLToolStripMenuItem.Name = "加载DLLToolStripMenuItem";
-            this.加载DLLToolStripMenuItem.Size = new System.Drawing.Size(65, 21);
+            this.加载DLLToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.加载DLLToolStripMenuItem.Text = "加载DLL";
             this.加载DLLToolStripMenuItem.Click += new System.EventHandler(this.加载DLLToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -153,7 +155,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 403);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 404);
             this.splitContainer1.SplitterDistance = 569;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -166,7 +168,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(569, 403);
+            this.tabControl1.Size = new System.Drawing.Size(569, 404);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -175,7 +177,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(561, 377);
+            this.tabPage1.Size = new System.Drawing.Size(561, 378);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "场景视图";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -196,8 +198,8 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.ComponentTree);
             this.splitContainer5.Panel2.Controls.Add(this.label6);
-            this.splitContainer5.Size = new System.Drawing.Size(555, 371);
-            this.splitContainer5.SplitterDistance = 341;
+            this.splitContainer5.Size = new System.Drawing.Size(555, 372);
+            this.splitContainer5.SplitterDistance = 232;
             this.splitContainer5.TabIndex = 1;
             // 
             // HierarchiesTree
@@ -205,7 +207,7 @@
             this.HierarchiesTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HierarchiesTree.Location = new System.Drawing.Point(0, 23);
             this.HierarchiesTree.Name = "HierarchiesTree";
-            this.HierarchiesTree.Size = new System.Drawing.Size(337, 344);
+            this.HierarchiesTree.Size = new System.Drawing.Size(228, 345);
             this.HierarchiesTree.TabIndex = 0;
             this.HierarchiesTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.HierarchiesTree_AfterSelect);
             // 
@@ -215,7 +217,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Top;
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(337, 23);
+            this.label5.Size = new System.Drawing.Size(228, 23);
             this.label5.TabIndex = 1;
             this.label5.Text = "场景";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -225,7 +227,7 @@
             this.ComponentTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ComponentTree.Location = new System.Drawing.Point(0, 23);
             this.ComponentTree.Name = "ComponentTree";
-            this.ComponentTree.Size = new System.Drawing.Size(206, 344);
+            this.ComponentTree.Size = new System.Drawing.Size(315, 345);
             this.ComponentTree.TabIndex = 1;
             this.ComponentTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ComponentTree_AfterSelect);
             // 
@@ -235,7 +237,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
             this.label6.Location = new System.Drawing.Point(0, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(206, 23);
+            this.label6.Size = new System.Drawing.Size(315, 23);
             this.label6.TabIndex = 0;
             this.label6.Text = "组件";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -246,7 +248,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(561, 377);
+            this.tabPage2.Size = new System.Drawing.Size(561, 378);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "脚本视图";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -256,9 +258,22 @@
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.Location = new System.Drawing.Point(3, 3);
             this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Size = new System.Drawing.Size(555, 371);
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.ScriptTree);
+            this.splitContainer4.Size = new System.Drawing.Size(555, 372);
             this.splitContainer4.SplitterDistance = 266;
             this.splitContainer4.TabIndex = 0;
+            // 
+            // ScriptTree
+            // 
+            this.ScriptTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScriptTree.Location = new System.Drawing.Point(0, 0);
+            this.ScriptTree.Name = "ScriptTree";
+            this.ScriptTree.Size = new System.Drawing.Size(266, 372);
+            this.ScriptTree.TabIndex = 0;
+            this.ScriptTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ScriptTree_AfterSelect);
             // 
             // tabPage3
             // 
@@ -266,7 +281,7 @@
             this.tabPage3.Controls.Add(this.FileView_Selector);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(561, 377);
+            this.tabPage3.Size = new System.Drawing.Size(561, 378);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "文件视图";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -288,7 +303,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.AssetObjList);
             this.splitContainer3.Panel2.Controls.Add(this.label4);
-            this.splitContainer3.Size = new System.Drawing.Size(561, 357);
+            this.splitContainer3.Size = new System.Drawing.Size(561, 358);
             this.splitContainer3.SplitterDistance = 157;
             this.splitContainer3.TabIndex = 1;
             // 
@@ -337,7 +352,7 @@
             this.AssetObjList.GridLines = true;
             this.AssetObjList.Location = new System.Drawing.Point(0, 23);
             this.AssetObjList.Name = "AssetObjList";
-            this.AssetObjList.Size = new System.Drawing.Size(559, 171);
+            this.AssetObjList.Size = new System.Drawing.Size(559, 172);
             this.AssetObjList.TabIndex = 1;
             this.AssetObjList.UseCompatibleStateImageBehavior = false;
             this.AssetObjList.View = System.Windows.Forms.View.Details;
@@ -390,7 +405,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.FileInfoText);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Size = new System.Drawing.Size(227, 403);
+            this.splitContainer2.Size = new System.Drawing.Size(227, 404);
             this.splitContainer2.SplitterDistance = 261;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -426,7 +441,7 @@
             this.FileInfoText.Multiline = true;
             this.FileInfoText.Name = "FileInfoText";
             this.FileInfoText.ReadOnly = true;
-            this.FileInfoText.Size = new System.Drawing.Size(225, 113);
+            this.FileInfoText.Size = new System.Drawing.Size(225, 114);
             this.FileInfoText.TabIndex = 1;
             // 
             // label2
@@ -459,7 +474,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(66, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(53, 17);
             this.toolStripStatusLabel1.Text = "Log  Here";
             // 
             // MainForm
@@ -486,6 +501,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -544,6 +560,7 @@
         private System.Windows.Forms.TreeView ComponentTree;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 关闭文件ToolStripMenuItem;
+        private System.Windows.Forms.TreeView ScriptTree;
     }
 }
 

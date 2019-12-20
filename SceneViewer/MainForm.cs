@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using AssetStudio;
@@ -19,7 +13,7 @@ namespace SceneViewer {
             Logger.Default = new GUILogger() {
                 LogEvent = new Action<string>(delegate (string msg) {
                     if (InvokeRequired)
-                        BeginInvoke(new Action(delegate { toolStripStatusLabel1.Text = msg; }));
+                        Invoke(new Action(delegate { toolStripStatusLabel1.Text = msg; }));
                     else
                         toolStripStatusLabel1.Text = msg;
                 })
@@ -27,14 +21,13 @@ namespace SceneViewer {
             Progress.Default = new GUIProgress() {
                 reportEvent = new Action<int>(delegate (int val) {
                     if (InvokeRequired)
-                        BeginInvoke(new Action(delegate { toolStripProgressBar1.Value = val; }));
+                        Invoke(new Action(delegate { toolStripProgressBar1.Value = val; }));
                     else
                         toolStripProgressBar1.Value = val;
                 })
             };
 
             manager = new AssetsManager();
-            scriptDumper = new ScriptDumper();
             openFileDialog.Multiselect = false;
         }
 
@@ -54,7 +47,7 @@ namespace SceneViewer {
                 ClearForm();
                 ThreadPool.QueueUserWorkItem(delegate {
                     manager.LoadFiles(openFileDialog.FileName);
-                    BeginInvoke(new Action(delegate { AfterLoad(); }));
+                    Invoke(new Action(delegate { AfterLoad(); }));
                 });
             }
         }
@@ -67,7 +60,12 @@ namespace SceneViewer {
                 ClearForm();
                 ThreadPool.QueueUserWorkItem(delegate {
                     manager.LoadFolder(openFolderDialog.Folder);
-                    BeginInvoke(new Action(delegate { AfterLoad(); }));
+                    if (Directory.Exists(openFolderDialog.Folder + "\\Manager"))
+                        scriptDumper = new ScriptDumper(openFolderDialog.Folder + "\\Manager");
+                    else
+                        scriptDumper = new ScriptDumper();
+
+                    Invoke(new Action(delegate { AfterLoad(); }));
                 });
             }
         }
@@ -100,6 +98,8 @@ namespace SceneViewer {
 
                 // TODO 加载脚本视图
                 Logger.Info("加载脚本视图");
+                ScriptTree.Nodes.AddRange(ScriptViewBuilder.BuildScriptTree(manager));
+                Logger.Info("加载脚本视图完成");
 
                 Logger.Info("视图更新完成");
             } else {
@@ -119,6 +119,9 @@ namespace SceneViewer {
             ExternalList.Items.Clear();
             AssetObjList.Items.Clear();
 
+            // 脚本视图
+            ScriptTree.Nodes.Clear();
+
             // 右侧视图
             DumpText.Text = "";
             FileInfoText.Text = "";
@@ -126,8 +129,7 @@ namespace SceneViewer {
             Text = "MainForm";
 
             manager.Clear();
-            scriptDumper.Dispose();
-            scriptDumper = new ScriptDumper();
+            scriptDumper?.Dispose();
         }
 
         // 场景视图部分
@@ -145,7 +147,15 @@ namespace SceneViewer {
             var obj = ComponentTree.SelectedNode.Tag as AssetObject;
             ShowInfoForObj(obj);
         }
-        
+
+        // 脚本视图部分
+        private void ScriptTree_AfterSelect(object sender, TreeViewEventArgs e) {
+            var tag = ScriptTree.SelectedNode.Tag;
+            if (tag is MonoScript script)
+                ShowInfoForObj(script);
+        }
+
+
         // 文件视图部分
         private void FileView_Selector_SelectedIndexChanged(object sender, EventArgs e) {
             ExternalList.Items.Clear();
@@ -202,6 +212,7 @@ namespace SceneViewer {
             ClearForm();
             Logger.Info("文件已关闭");
         }
+
     }
 
     public class GUILogger : ILogger {
